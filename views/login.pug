@@ -1,0 +1,15 @@
+extends base
+
+block content 
+    section.login   
+        .loginForm
+            h2.loginHeader Log in to your account 
+            form.form
+                .form-group 
+                    label.formLabel(for='email') Email Address 
+                    input#email.formInput(type='email',name='email', placeholder='yourName@example.com',required )
+                .form-group 
+                    label.formLabel(for='password') Password 
+                    input#password.formInput(type='password',placeholder="••••••••",required,minlength=8)
+                .form-group
+                    button.btn.btn-green Login

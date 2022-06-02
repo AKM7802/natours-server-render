@@ -1,0 +1,22 @@
+//- class specified like below(sec-name.class-name) and other attributes inside parenthesis ()
+header.header
+    nav.nav.nav--tours 
+        a.nav-el(href='/') ALL TOURS 
+        form.nav-form
+            button.nav-search-btn 
+                i.fas.fa-search 
+            input.nav-search-box(type='search',placeholder='SEARCH TOURS')
+    //- div can be represented as div.class-name or just .class-name
+    .logo
+        img.nav-image(src='/img/logo-white.png')  
+    nav.nav.nav--users 
+        //- user variable we get from authController which is specified in viewRoutes to check if logged in
+        if user 
+            a.nav-el.nav-logout LOGOUT
+            a.nav-el.accountInfo(href='/account')    
+                img.nav_user-img(src=`/img/users/${user.photo}` alt='User Photo')
+                span= user.name.split(' ')[0]
+        else 
+            a.nav-el(href='/login') LOGIN
+            a.nav-el(href='#')    
+                span Sign UP

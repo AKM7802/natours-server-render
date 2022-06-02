@@ -1,0 +1,67 @@
+extend base 
+
+block content 
+    section.account
+     .account_block 
+        .account_left 
+            .center_provider 
+                .account_top_left 
+                    a.account_choices.act-active(href='#')
+                        i.fa-solid.fa-gear
+                        | SETTINGS 
+                    a.account_choices(href='/my-tours')
+                        i.fa-solid.fa-briefcase    
+                        | MY BOOKINGS
+                    a.account_choices(href='#')
+                        i.fa-solid.fa-star
+                        | MY REVIEWS
+                    a.account_choices(href='#')
+                        i.fa-solid.fa-credit-card
+                        | BILLING 
+                h4.admin_head ADMIN 
+                .account_bottom_left 
+                    a.account_choices(href='#')
+                        i.fa-solid.fa-map
+                        | MANAGE TOURS 
+                    a.account_choices(href='#')
+                        i.fa-solid.fa-user-group
+                        | MANAGE USERS
+                    a.account_choices(href='#')
+                        i.fa-solid.fa-star
+                        |MANAGE REVIEWS 
+                    a.account_choices(href='#')
+                        i.fa-solid.fa-briefcase
+                        | MANAGE BOOKINGS 
+        .account_right 
+            .account-settings 
+                h2.account_right_heading YOUR ACCOUNT SETTINGS 
+                
+                //- WITHOUT API
+                //- form.settings-form(action='submit-user-data' method='POST' enctype='multipart/form-data') //enctype is used to send files like images
+
+                //- WITH API
+                form.settings-form
+                    label.form-heads(for='name') Name 
+                    input.form-inputs#name(type='text',name='name',value=`${user.name}`)
+                    label.form-heads(for='email') Email address
+                    input.form-inputs#email(type='email',value=`${user.email}`,name='email')
+                    .form-group-head
+                        img.pic(alt='Image File',src=`/img/users/${user.photo}`,class='account-image')
+                        .form-group0 
+                            input.pic-chooser(type='file',name='photo',accept='image/*',id='photo')
+                            label(for='photo') Choose new photo
+
+                    input.settings-submit(type='submit',value='SAVE SETTINGS')
+
+
+                form.password-form
+                    label.form-heads(for='curPassword') Current Password
+                    input.form-inputs#currentPassword(type='password',name='curPassword',placeholder='●●●●●●●●●')
+                    label.form-heads(for='newPassword') New Password
+                    input.form-inputs#newPassword(type='password',value=``,name='newPassword',placeholder='●●●●●●●●●●●●')
+                    label.form-heads(for='confirmPassword') Confirm Password
+                    input.form-inputs#confirmPassword(type='password',value=``,name='confirmPassword',placeholder='●●●●●●●●●●●●')
+                    
+
+                    input.settings-submit#passwordSubmit(type='submit',value='CHANGE PASSWORD')
+

@@ -1,0 +1,32 @@
+//- By extending what realy happens is , everything except the block specified from the extended file gets copied here
+extends base
+
+block content
+    section
+      .card-container
+        each tour in tours
+          .card   
+            .card-header 
+                .card-picture 
+                    .card-picture-overlay
+                    img.card-picture-img(alt=`tour.name` src=`img/tours/${tour.imageCover}`)
+                h3.card-heading 
+                    span= tour.name
+            .card-content 
+                h4.card-sub-heading= `${tour.difficulty.toUpperCase()} ${tour.duration}-day tour`
+                p.card-text= tour.summary 
+                .card-data: span= tour.startLocation.description
+                .card-data: span= tour.startDates[0].toLocaleString('en-us',{month:'long',year:'numeric'})
+                .card-data: span= tour.locations.length 
+                .card-data: span= `${tour.maxGroupSize} people`
+            .card-footer
+                p.card-price
+                    span.card-footer-value= `$${tour.price}`
+                    //- | is used to provide in-line space in pug
+                    | 
+                    span.card-footer-text per person 
+                p.card-ratings  
+                    span.card-footer-value= tour.ratingsAverage
+                    | 
+                    span.card-footer-text= `rating(${tour.ratingsQuantity})`
+                a.btn.details-btn(href=`/tour/${tour.slug}`) Details

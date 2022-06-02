@@ -1,0 +1,106 @@
+extends base
+
+//- append will not remove the contents from head block but instead add along with that
+block append head
+    //- script(src='/js/mapbox.js')
+    script(src='https://js.stripe.com/v3/')
+    script(src='https://api.mapbox.com/mapbox-gl-js/v2.7.0/mapbox-gl.js')
+    link(href='https://api.mapbox.com/mapbox-gl-js/v2.7.0/mapbox-gl.css' rel='stylesheet')
+    
+                                        
+
+block content 
+    section.section-header 
+        img.section-header-cover(src=`/img/tours/${tour.imageCover}`)
+        .section-header-cover-overlay 
+        .heading-box    
+            h1.heading-primary: span= tour.name
+            .heading-details-box 
+                .heading-details 
+                    i.fas.fa-clock 
+                    span.heading-text= `${tour.duration}days`
+                .heading-details 
+                    i.fas.fa-map-marker-alt 
+                    span.heading.box= tour.startLocation.description
+
+
+    section.section-details     
+        .overview-box 
+            .overview-items 
+                h4.section-details-head QUICK FACTS 
+                .overview-item 
+                    h2.fact-heading NEXT DATE
+                        | 
+                        i.fas.fa-calendar
+                    span.fact-content= tour.startDates[0].toLocaleString('en-us',{month:'long',year:'numeric'})
+                .overview-item 
+                    h2.fact-heading DIFFICULTY 
+                        i.fas.fa-chart-line 
+                    span.fact-content= tour.difficulty
+                .overview-item 
+                    h2.fact-heading PARTICIPANTS 
+                        i.far.fa-user             
+                    span.fact-content= `${tour.maxGroupSize} People`
+                .overview-item  
+                    h2.fact-heading RATING 
+                        i.far.fa-star 
+                    span.fact-content= `${tour.ratingsAverage}/5`
+            .tour-guides 
+                h2.section-details-head YOUR TOUR GUIDES 
+                each guide in tour.guides
+                 .tour-operator 
+                    img.user-pic(alt='tour-guide-pic' src=`/img/users/${guide.photo}`)
+                    h4.tour-guide-position LEAD GUIDE 
+                    p.tour-guide-name= guide.name
+                 
+        .description-box 
+            h2.section-details-head ABOUT THE PARK CAMPER TOUR 
+            p.description-text= tour.description 
+            
+
+    section.section-images 
+        each pic in tour.images
+            img.showcase-image(src=`/img/tours/${pic}` alt='image')
+        
+    section.section-map 
+        //- data-attributes can be created using data-NAME which can be accessed in javascript
+        #map(data-location=`${JSON.stringify(tour.locations)}`)
+
+    section.section-review 
+        .reviews 
+          each review in tour.reviews          
+            .review-card 
+                .user-box 
+                    img.user-pic(alt='User-pic' src=`/img/users/${review.user.photo}`)
+                    h2.user-name= review.user.name
+                p.user-review= review.review
+                .rating-box 
+                    
+                    each star in [1,2,3,4,5]
+                         i.far.fa-star(class=`${review.rating>=star ? '' : 'inactive' }`)
+                         
+                   
+
+    section.section-cta 
+        .cta 
+            .cta-img.cta-logo 
+                img(alt='' src='/img/logo-white.png')
+            img.cta-img.cta-img-1(alt='' src=`/img/tours/${tour.images[0]}`)
+            img.cta-img.cta-img-2(alt='' src=`/img/tours/${tour.images[1]}`)
+            .cta-content 
+                h2.cta-content-heading What are you waiting for?
+                p.cta-text= `${tour.duration} days. 1 adventure. Infinite memories. Make it yours today!`
+
+                if user
+                  a.cta-btn#book-tour(data-tour-id=`${tour.id}`,href=`/api/v1/bookings/checkout-session/${tour.id}` ) Book Tour Now!
+                else 
+                  a.cta-btn(href="/login") Log in to book tour
+
+
+
+    
+
+
+            
+
+    

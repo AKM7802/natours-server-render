@@ -1,0 +1,39 @@
+
+doctype html 
+html 
+    head  
+       block head   
+        title Natours | #{title}
+        link(rel='stylesheet' href='/css/style.css') 
+        meta(charset='UTF-8')
+        meta(http-equiv='X-UA-Compatible' content='IE=edge')
+        meta(name='viewport' content='width=device-width, initial-scale=1.0')
+        link(rel='stylesheet' href='https://use.fontawesome.com/releases/v5.15.4/css/all.css' integrity='sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm' crossorigin='anonymous')
+        script(src="https://kit.fontawesome.com/9eaf6da6f1.js",crossorigin="anonymous")
+        
+
+    body 
+        //- HEADER
+        include _header
+
+        //-CONTENT SECTION
+        //- block is used to specify the placeHolder which can be filled with any file which 'extends base' and put their content there
+
+        block content
+            h2 THIS IS A PLACEHOLDER 
+
+        //- FOOTER
+        include _footer
+        
+        //- USING JS SCRIPT BELOW SO THAT IT RUNS AFTER EVERYTHING IS LOADED
+        //-Below is the cdn for axios
+        //- script(src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js")
+        //- script(src='/js/login.js')
+        //- script(src='/js/mapbox.js')
+
+        //- We have bundled every script as bundle.js using parcel-bundler and commands are specified in package.json
+        script(src='/js/bundle.js')
+
+
+   
+
