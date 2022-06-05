@@ -4,6 +4,7 @@ const tourRouter=require('../natours api/routes/tourRoutes')
 const reviewRouter=require('../natours api/routes/reviewRoutes')
 const userRouter=require('../natours api/routes/userRoutes')
 const path=require('path');
+const compression=require('compression')
 const express=require('express')
 const cookieParser=require('cookie-parser')
 const ErrorController=require('../natours api/controllers/errorController')
@@ -22,6 +23,8 @@ app.use(express.static(path.join(__dirname,'public'))) //While using this we do 
 app.use(express.urlencoded({extended:true,limit:'10kb'})) //To parse the data send through form submit using action argument and use the req.body from it
 app.use(cookieParser()) //This allows to use req.cookie in authController.protect to use the jwt cookie generated
 
+//using compression to compress the text fetched from server
+app.use(compression())
 
 //Routes
 app.use('/',viewRouter)
