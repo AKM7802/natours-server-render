@@ -1,6 +1,6 @@
 const express=require('express')
 const viewController=require('../controller/viewController')
-const authController=require('../../natours api/controllers/authController')
+const authController=require('../controller/authController')
 const bookingController=require('../controller/bookingController')
 
 const router=express.Router()

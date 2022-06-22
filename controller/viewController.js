@@ -1,9 +1,9 @@
-const Tour=require('../../natours api/models/tourModel')
-const Review=require('../../natours api/models/reviewModel')
-const User=require('../../natours api/models/userModel')
-const Booking=require('../../natours api/models/bookingModel')
-const AppError=require('../../natours api/utils/appError')
-const catchAsync=require('../../natours api/utils/catchAsync')
+const Tour=require('../model/tourModel')
+const Review=require('../model/reviewModel')
+const User=require('../model/userModel')
+const Booking=require('../model/bookingModel')
+const AppError=require('../utils/appError')
+const catchAsync=require('../utils/catchAsync')
 
 exports.getOverview=catchAsync(async (req,res,next)=>{
     const tours=await Tour.find();

@@ -1,11 +1,11 @@
 
 const app=require('./app')
-const dotenv=require('dotenv')
+//const dotenv=require('dotenv')
 const mongoose=require('mongoose')
 
 
 
-dotenv.config({path:"../config.env"})
+//dotenv.config({path:"../config.env"})
 
 const db=process.env.DATABASE.replace('<password>',process.env.DATABASE_PASS)
 mongoose.connect(/*process.env.DATABASE_LOCAL*/ db ,{
@@ -14,5 +14,5 @@ mongoose.connect(/*process.env.DATABASE_LOCAL*/ db ,{
     
 }).then(()=>console.log("DB CONNECTION SUCCESSFUL"))
 
-
-const server=app.listen(8080,()=>console.log("server started at 8080"))
+const port=process.env.PORT || 8080  //.PORT is already set by heroku app and for some reason if not 8080 will be used
+const server=app.listen(port,()=>console.log("server started at 8080"))

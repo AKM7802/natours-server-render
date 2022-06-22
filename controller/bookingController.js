@@ -1,9 +1,9 @@
 const stripe=require('stripe')('sk_test_51KrcN8SAu8DyRGr4CA2HlC7wmYnvx3dZUr7qsrUPJ4dh8u0IdVMWoiy3P3Vso5WGjZpiF2sLQqE5W08Ku5d682eh00mIdyLRzq')
-const Tour=require('../../natours api/models/tourModel')
-const Booking=require('../../natours api/models/bookingModel')
-const AppError=require('../../natours api/utils/appError')
-const catchAsync=require('../../natours api/utils/catchAsync')
-const factory=require('../../natours api/controllers/handlerFactory')
+const Tour=require('../model/tourModel')
+const Booking=require('../model/bookingModel')
+const AppError=require('../utils/appError')
+const catchAsync=require('../utils/catchAsync')
+const factory=require('./handlerFactory')
 
 exports.getCheckoutSession=catchAsync(async (req,res,next)=>{
     //1) Get the currently booked tour

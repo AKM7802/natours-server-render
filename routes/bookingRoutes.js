@@ -1,6 +1,6 @@
 const express=require('express')
 const bookingController=require('../controller/bookingController')
-const authController=require('../../natours api/controllers/authController')
+const authController=require('../controller/authController')
 
 const router=express.Router()
 
@@ -11,7 +11,7 @@ router.get('/checkout-session/:tourId',authController.protect,bookingController.
 router.use(authController.restrictTo('admin','lead-guide'))
 
 router.route('/').get(bookingController.getAllBookings).post(bookingController.createBooking);
-router,route('/:id').get(bookingController.getBooking).patch(bookingController.updateBooking).delete(bookingController.deleteBooking);
+router.route('/:id').get(bookingController.getBooking).patch(bookingController.updateBooking).delete(bookingController.deleteBooking);
 
 
 module.exports=router;

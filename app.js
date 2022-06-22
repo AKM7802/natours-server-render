@@ -1,13 +1,13 @@
 const viewRouter=require('./routes/viewRoutes')
 const bookingRouter=require('./routes/bookingRoutes')
-const tourRouter=require('../natours api/routes/tourRoutes')
-const reviewRouter=require('../natours api/routes/reviewRoutes')
-const userRouter=require('../natours api/routes/userRoutes')
+//const tourRouter=require('../natours api/routes/tourRoutes')
+//const reviewRouter=require('../natours api/routes/reviewRoutes')
+//const userRouter=require('../natours api/routes/userRoutes')
 const path=require('path');
 const compression=require('compression')
 const express=require('express')
 const cookieParser=require('cookie-parser')
-const ErrorController=require('../natours api/controllers/errorController')
+const ErrorController=require('./controller/errorController')
 
 
 const app=express();
@@ -29,10 +29,12 @@ app.use(compression())
 //Routes
 app.use('/',viewRouter)
 
+
 //apiRoutes
-app.use('/api/v1/tours',tourRouter)
-app.use('/api/v1/users',userRouter)
-app.use('/api/v1/reviews',reviewRouter)
+
+//app.use('/api/v1/tours',tourRouter)
+//app.use('/api/v1/users',userRouter)
+//app.use('/api/v1/reviews',reviewRouter)
 app.use('/api/v1/bookings',bookingRouter)
 
 app.use(ErrorController)
