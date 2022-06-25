@@ -6,7 +6,7 @@ export const login=async (email,password)=>{
     try{
      const res=await axios({
          method:'POST',
-         url:"http://localhost:8080/api/v1/users/login",
+         url:"https://natours-ak-api.herokuapp.com/api/v1/users/login",
          data:{
              email,
              password
